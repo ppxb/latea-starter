@@ -1,0 +1,4 @@
+com.ppxb.latea.starter.core.autoconfigure.project.ProjectAutoConfiguration
+com.ppxb.latea.starter.core.autoconfigure.ValidatorAutoConfiguration
+com.ppxb.latea.starter.core.autoconfigure.threadpool.ThreadPoolAutoConfiguration
+com.ppxb.latea.starter.core.autoconfigure.threadpool.AsyncAutoConfiguration
