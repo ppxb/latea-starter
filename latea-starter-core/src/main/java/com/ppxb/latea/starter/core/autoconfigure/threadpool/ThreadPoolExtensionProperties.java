@@ -8,27 +8,27 @@ public class ThreadPoolExtensionProperties {
     /**
      * 异步任务扩展配置属性
      */
-    private ExecutorExtensionProperties executor = new ExecutorExtensionProperties();
+    private ExecutorExtensionProperties execution = new ExecutorExtensionProperties();
 
     /**
      * 调度任务扩展配置属性
      */
-    private SchedulerExtensionProperties scheduler = new SchedulerExtensionProperties();
+    private SchedulerExtensionProperties scheduling = new SchedulerExtensionProperties();
 
-    public ExecutorExtensionProperties getExecutor() {
-        return executor;
+    public ExecutorExtensionProperties getExecution() {
+        return execution;
     }
 
-    public void setExecutor(ExecutorExtensionProperties executor) {
-        this.executor = executor;
+    public void setExecution(ExecutorExtensionProperties execution) {
+        this.execution = execution;
     }
 
-    public SchedulerExtensionProperties getScheduler() {
-        return scheduler;
+    public SchedulerExtensionProperties getScheduling() {
+        return scheduling;
     }
 
-    public void setScheduler(SchedulerExtensionProperties scheduler) {
-        this.scheduler = scheduler;
+    public void setScheduling(SchedulerExtensionProperties scheduling) {
+        this.scheduling = scheduling;
     }
 
     /**
