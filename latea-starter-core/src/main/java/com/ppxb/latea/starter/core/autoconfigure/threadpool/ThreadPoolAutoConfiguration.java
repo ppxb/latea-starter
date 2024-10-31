@@ -103,7 +103,7 @@ public class ThreadPoolAutoConfiguration {
      *         rejected-policy: DISCARD
      * </pre></blockquote>
      *
-     * <p>当 spring.task.scheduling.extension.enabled=true 时（默认为true），该配置生效。
+     * <p>当 <code>spring.task.scheduling.extension.enabled=true</code> 时（默认为true），该配置生效。
      *
      * @author ppxb
      * @see org.springframework.scheduling.annotation.EnableScheduling
