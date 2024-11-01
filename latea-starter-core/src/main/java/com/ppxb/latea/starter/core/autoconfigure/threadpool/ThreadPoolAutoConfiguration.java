@@ -19,25 +19,25 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  *
  * <p>该配置类提供了两种线程池的配置：
  * <ul>
- *     <li>异步任务线程池 - 用于处理 @Async 注解标记的异步方法</li>
- *     <li>定时任务线程池 - 用于处理 @Scheduled 注解标记的定时任务</li>
+ * <li>异步任务线程池 - 用于处理 @Async 注解标记的异步方法</li>
+ * <li>定时任务线程池 - 用于处理 @Scheduled 注解标记的定时任务</li>
  * </ul>
  *
  * <p>配置示例：
  * <blockquote><pre>
  * spring:
- *   task:
- *     execution:
- *       pool:
- *         core-size: 8
- *         max-size: 16
- *       extension:
- *         enabled: true
- *         rejected-policy: CALLER_RUNS
- *     scheduling:
- *       extension:
- *         enabled: true
- *         rejected-policy: DISCARD
+ * task:
+ * execution:
+ * pool:
+ * core-size: 8
+ * max-size: 16
+ * extension:
+ * enabled: true
+ * rejected-policy: CALLER_RUNS
+ * scheduling:
+ * extension:
+ * enabled: true
+ * rejected-policy: DISCARD
  * </pre></blockquote>
  *
  * @author ppxb
@@ -64,20 +64,14 @@ public class ThreadPoolAutoConfiguration {
      * 异步任务线程池配置
      */
     @Bean
-    @ConditionalOnProperty(
-            prefix = "string.task.execution.extension",
-            name = PropertiesConstants.ENABLED,
-            havingValue = "true",
-            matchIfMissing = true
-    )
+    @ConditionalOnProperty(prefix = "string.task.execution.extension", name = PropertiesConstants.ENABLED, havingValue = "true", matchIfMissing = true)
     public ThreadPoolTaskExecutorCustomizer threadPoolTaskExecutorCustomizer(ThreadPoolExtensionProperties properties) {
         return executor -> {
             executor.setCorePoolSize(corePoolSize);
             executor.setMaxPoolSize(maxPoolSize);
-            executor.setRejectedExecutionHandler(
-                    properties.getExecution()
-                            .getRejectedPolicy()
-                            .getRejectedExecutionHandler());
+            executor.setRejectedExecutionHandler(properties.getExecution()
+                .getRejectedPolicy()
+                .getRejectedExecutionHandler());
             log.debug("[Latea Starter] - Auto Configuration 'TaskExecutor' completed initialization.");
         };
     }
@@ -87,18 +81,18 @@ public class ThreadPoolAutoConfiguration {
      *
      * <p>该配置类主要提供以下功能：
      * <ul>
-     *     <li>配置定时任务线程池的拒绝策略</li>
-     *     <li>自定义定时任务线程池的行为</li>
+     * <li>配置定时任务线程池的拒绝策略</li>
+     * <li>自定义定时任务线程池的行为</li>
      * </ul>
      *
      * <p>配置示例：
      * <blockquote><pre>
      * spring:
-     *   task:
-     *     scheduling:
-     *       extension:
-     *         enabled: true
-     *         rejected-policy: DISCARD
+     * task:
+     * scheduling:
+     * extension:
+     * enabled: true
+     * rejected-policy: DISCARD
      * </pre></blockquote>
      *
      * <p>当 <code>spring.task.scheduling.extension.enabled=true</code> 时（默认为true），该配置生效。
@@ -111,21 +105,15 @@ public class ThreadPoolAutoConfiguration {
      */
     @EnableScheduling
     @Configuration(proxyBeanMethods = false)// FIXME: 可能会出现问题
-    @ConditionalOnProperty(
-            prefix = "spring.task.scheduling.extension",
-            name = PropertiesConstants.ENABLED,
-            havingValue = "true",
-            matchIfMissing = true
-    )
+    @ConditionalOnProperty(prefix = "spring.task.scheduling.extension", name = PropertiesConstants.ENABLED, havingValue = "true", matchIfMissing = true)
     public static class TaskSchedulerConfiguration {
 
         @Bean
         public ThreadPoolTaskSchedulerCustomizer threadPoolTaskSchedulerCustomizer(ThreadPoolExtensionProperties properties) {
             return executor -> {
-                executor.setRejectedExecutionHandler(
-                        properties.getScheduling()
-                                .getRejectedPolicy()
-                                .getRejectedExecutionHandler());
+                executor.setRejectedExecutionHandler(properties.getScheduling()
+                    .getRejectedPolicy()
+                    .getRejectedExecutionHandler());
                 log.debug("[Latea Starter] - Auto Configuration 'TaskScheduler' completed initialization.");
             };
         }

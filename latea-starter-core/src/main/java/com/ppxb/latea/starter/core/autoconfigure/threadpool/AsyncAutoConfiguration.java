@@ -20,12 +20,7 @@ import java.util.concurrent.Executor;
 @Lazy
 @AutoConfiguration
 @EnableAsync(proxyTargetClass = true)
-@ConditionalOnProperty(
-        prefix = "spring.task.execution.extension",
-        name = PropertiesConstants.ENABLED,
-        havingValue = "true",
-        matchIfMissing = true
-)
+@ConditionalOnProperty(prefix = "spring.task.execution.extension", name = PropertiesConstants.ENABLED, havingValue = "true", matchIfMissing = true)
 public class AsyncAutoConfiguration implements AsyncConfigurer {
 
     private static final Logger log = LoggerFactory.getLogger(AsyncAutoConfiguration.class);
@@ -50,13 +45,11 @@ public class AsyncAutoConfiguration implements AsyncConfigurer {
     @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return (throwable, method, objects) -> {
-            log.error("Async method {} execution failed with parameters: {}",
-                    method.getName(),
-                    ArrayUtil.isNotEmpty(objects) ? Arrays.toString(objects) : "none",
-                    throwable);
+            log.error("Async method {} execution failed with parameters: {}", method.getName(), ArrayUtil
+                .isNotEmpty(objects) ? Arrays.toString(objects) : "none", throwable);
 
-            String errorMessage = String.format("Async execution failed - method: %s, message: %s",
-                    method.getName(), throwable.getMessage());
+            String errorMessage = String.format("Async execution failed - method: %s, message: %s", method
+                .getName(), throwable.getMessage());
             throw new BaseException(errorMessage);
         };
     }

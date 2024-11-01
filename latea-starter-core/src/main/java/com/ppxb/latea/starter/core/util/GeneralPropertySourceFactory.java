@@ -18,7 +18,8 @@ import java.io.IOException;
  * 本实现增加了对 .yml 和 .yaml 文件的加载支持。</p>
  *
  * <p>关于Spring Boot中YAML格式的限制，请参考：
- * <a href="https://docs.spring.io/spring-boot/docs/2.0.6.RELEASE/reference/html/boot-features-external-config.html#boot-features-external-config-yaml-shortcomings">YAML使用限制说明</a></p>
+ * <a
+ * href="https://docs.spring.io/spring-boot/docs/2.0.6.RELEASE/reference/html/boot-features-external-config.html#boot-features-external-config-yaml-shortcomings">YAML使用限制说明</a></p>
  *
  * @author ppxb
  * @since 1.0.0
@@ -38,7 +39,8 @@ public class GeneralPropertySourceFactory extends DefaultPropertySourceFactory {
      * @throws IOException 如果加载配置源失败会抛出异常
      */
     @Override
-    public PropertySource<?> createPropertySource(@Nullable String name, EncodedResource encodedResource) throws IOException {
+    public PropertySource<?> createPropertySource(@Nullable String name,
+                                                  EncodedResource encodedResource) throws IOException {
         Resource resource = encodedResource.getResource();
         String resourceName = resource.getFilename();
         if (CharSequenceUtil.isNotBlank(resourceName) && CharSequenceUtil.endWithAny(resourceName, ".yml", ".yaml")) {
