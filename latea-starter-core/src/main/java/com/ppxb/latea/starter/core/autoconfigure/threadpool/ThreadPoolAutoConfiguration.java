@@ -72,9 +72,7 @@ public class ThreadPoolAutoConfiguration {
     )
     public ThreadPoolTaskExecutorCustomizer threadPoolTaskExecutorCustomizer(ThreadPoolExtensionProperties properties) {
         return executor -> {
-            // 核心（最小）线程数
             executor.setCorePoolSize(corePoolSize);
-            // 最大线程数
             executor.setMaxPoolSize(maxPoolSize);
             executor.setRejectedExecutionHandler(
                     properties.getExecution()

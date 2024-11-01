@@ -33,6 +33,7 @@
     <modules>
         <module>latea-starter-dependencies</module>
         <module>latea-starter-core</module>
+        <module>latea-starter-api-doc</module>
     </modules>
 
     <properties>

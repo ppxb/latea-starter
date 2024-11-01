@@ -311,6 +311,14 @@
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
+
+            <!-- Latea Starter 依赖 -->
+            <!-- 核心模块 -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latea-starter-core</artifactId>
+                <version>${revision}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
